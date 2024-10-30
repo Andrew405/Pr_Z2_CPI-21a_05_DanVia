@@ -1,59 +1,77 @@
 import numpy as np
 import pandas as pd
 
-N = 10
+def BirthYear(dataSet, N):
+    dataSet['birth year'] = np.random.randint(1970, 2006, N)
 
-def dfGenerate(N):
-    df = {#'name': [],
-          'birth year': [],
-          'sex': [],
-          'weight': [],
-          'height': [],
-          'brand': [],
-          'class': [],
-          'credit': []}
-    
-    df['birth year'] = np.random.randint(1970, 2006, N)
+    return dataSet
 
+def Sex(dataSet, N):
     sexProbability = np.random.uniform(0.0, 1.0, N)
     for i in range(N):
         if sexProbability[i] > 0.5:
-            df['sex'].append('Мужской')
+            dataSet['sex'].append('Мужской')
         else:
-            df['sex'].append('Женский')
+            dataSet['sex'].append('Женский')
 
+    return dataSet
+
+def Weight_Height(dataSet, N):
     for i in range(N):
-        if df['sex'][i] == 'Мужской':
-            df['weight'].append(np.round(np.random.normal(83.3, 10), 1))
-            df['height'].append(np.round(np.random.normal(176, 20), 1))
+        if dataSet['sex'][i] == 'Мужской':
+            dataSet['weight'].append(abs(np.round(np.random.normal(83.3, 10), 1)))
+            dataSet['height'].append(abs(np.round(np.random.normal(176, 20), 1)))
         else:
-            df['weight'].append(np.round(np.random.normal(72.5, 7.5), 1))
-            df['height'].append(np.round(np.random.normal(163.7, 15), 1))
+            dataSet['weight'].append(abs(np.round(np.random.normal(72.5, 7.5), 1)))
+            dataSet['height'].append(abs(np.round(np.random.normal(163.7, 15), 1)))
+    
+    return dataSet
 
+def Brand(dataSet, N):
     brandProbability = np.random.random(N)
     for i in range(N):
         if brandProbability[i] > 0.95:
-            df['brand'].append('Kia')
+            dataSet['brand'].append('Kia')
         elif brandProbability[i] > 0.85:
-            df['brand'].append('Renault')
+            dataSet['brand'].append('Renault')
         elif brandProbability[i] > 0.65:
-            df['brand'].append('Volksvagen')
+            dataSet['brand'].append('Volksvagen')
         elif brandProbability[i] > 0.4:
-            df['brand'].append('Hyundai')
+            dataSet['brand'].append('Hyundai')
         else:
-            df['brand'].append('ВАЗ')
+            dataSet['brand'].append('ВАЗ')
 
+    return dataSet
+
+def Class(dataSet, N):
     classProbability = np.random.random(N)
     for i in range(N):
         if classProbability[i] > 0.95:
-            df['class'].append('Престиж')
+            dataSet['class'].append('Престиж')
         elif classProbability[i] > 0.75:
-            df['class'].append('Средний')
+            dataSet['class'].append('Средний')
         else:
-            df['class'].append('Эконом')
+            dataSet['class'].append('Эконом')
 
-    df['credit'] = np.round(np.random.normal(loc= 150000, scale= 80000, size= N), 2)
+    return dataSet
 
-    return df
+def Credit(dataSet, N):
+    dataSet['credit'] = abs(np.round(np.random.normal(loc= 150000, scale= 80000, size= N), 2))
 
-print(pd.DataFrame(dfGenerate(N)))
+    return dataSet
+
+def Name(dataSet, N):
+    manNames = ('Александр', 'Михаил', 'Максим', 'Лев', 'Марк', 'Артем', 'Иван', 'Матвей', 'Дмитрий', 'Даниил')
+    manSurnames = ('Иванов', 'Смирнов', 'Кузнецов', 'Попов', 'Васильев', 'Петров', 'Соколов', 'Михайлов', 'Новиков', 'Федоров')
+
+    womanNames = ('София', 'Анна', 'Мария', 'Ева', 'Виктория', 'Полина', 'Варвара', 'Алиса', 'Василиса', 'Александра')
+    womanSurnames = ('Иванова', 'Смирнова', 'Кузнецова', 'Попова', 'Васильева', 'Петрова', 'Соколова', 'Михайлова', 'Новикова', 'Федорова')
+    for i in range(N):
+        if dataSet['sex'][i] == 'Мужской':
+            #dataSet['name'].append(str(input("Введите мужское имя и фамилию: ")))
+            dataSet['name'].append(manNames[np.random.randint(0, 9)] + ' ' + manSurnames[np.random.randint(0, 9)])
+        else:
+            #dataSet['name'].append(str(input("Введите женское имя и фамилию: ")))
+            dataSet['name'].append(womanNames[np.random.randint(0, 9)] + ' ' + womanSurnames[np.random.randint(0, 9)])
+
+    return dataSet
