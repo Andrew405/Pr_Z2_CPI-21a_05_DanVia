@@ -39,7 +39,7 @@ df = df.sort_values('height', ascending= False)
 print(df)
 print(' ')
 
-df = df.sort_values('weight', ascending= False)
+df = df.sort_values('credit', ascending= False)
 print(df)
 print(' ')
 
@@ -52,3 +52,8 @@ print(' ')
 print(womanAuto)
 print(' ')
 print(df.loc[3])
+print(' ')
+
+dfset = set(df.loc[5])
+print(dfset)
+print(' ')
