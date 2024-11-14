@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 def BirthYear(dataSet, N):
-    dataSet['birth year'] = np.random.randint(1970, 2006, N)
+    dataSet['birth_year'] = np.random.randint(1970, 2006, N)
 
     return dataSet
 
@@ -43,15 +43,15 @@ def Brand(dataSet, N):
 
     return dataSet
 
-def Class(dataSet, N):
+def Clas(dataSet, N):
     classProbability = np.random.random(N)
     for i in range(N):
         if classProbability[i] > 0.95:
-            dataSet['class'].append('Престиж')
+            dataSet['clas'].append('Престиж')
         elif classProbability[i] > 0.75:
-            dataSet['class'].append('Средний')
+            dataSet['clas'].append('Средний')
         else:
-            dataSet['class'].append('Эконом')
+            dataSet['clas'].append('Эконом')
 
     return dataSet
 
